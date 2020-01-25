@@ -1,5 +1,5 @@
 pipeline {
-    agent slave01,SandySlave
+    agent { slave01,SandySlave }
     stages {
         
         stage('compile') {
