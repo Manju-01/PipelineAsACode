@@ -1,5 +1,5 @@
 pipeline {
-    agent {name 'slave01','SandySlave'}
+    agent {label 'slave01','SandySlave'}
     stages {
         
         stage('compile') {
