@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'Java' }
+    agent { 'slave01 && SandySlave' }
     stages {
         
         stage('compile') {
