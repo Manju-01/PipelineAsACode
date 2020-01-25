@@ -12,7 +12,7 @@ pipeline {
                 sh "java HelloWorld"
             }
         }
-     agent {label 'Java1' }
+    agent {label 'Java' }
     stages {
         
         stage('compile') {
