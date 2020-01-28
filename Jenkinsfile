@@ -3,30 +3,34 @@ pipeline {
     stages {
         stage('compile') {
             parallel{
-                stage('hello & hi Compile'){
-                steps {
-                     sh "javac hello.java"
+               stage('hello Compile'){
+                    steps {
+                         sh "javac hello.java"
+                    }
                 }
-                steps{
-                     sh "javac hi.java"       
-                 }
-               }
-             }
-                
-        }
+                stage('hi Compile'){
+                    steps{
+                         sh "javac hi.java"       
+                     }
+                }
+               
+            }
+          }
         stage('run') {
             parallel{
-              stage('hi & hello run')
-                steps {
-                    sh "java HelloWorld"
-                 }
-                steps {
-                    sh "java hi"
+                stage('hello run') {
+                    steps {
+                        sh "java HelloWorld"
+                     }
+              }
+                stage('hi run'){
+                    steps {
+                        sh "java hi"
                   }
-               }
+              }
         }
         
     }
-
+    }
        
 }
