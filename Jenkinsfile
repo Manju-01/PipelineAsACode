@@ -1,33 +1,31 @@
 pipeline {
-    agent none
+    agent any
     stages {
-        
         stage('compile') {
-            agent {label 'Java'}
-            steps {
-                 sh "javac hello.java"
-            }
-            
+            parallel{
+                stage('hello & hi Compile'){
+                steps {
+                     sh "javac hello.java"
+                }
+                steps{
+                     sh "javac hi.java"       
+                 }
+               }
+             }
+                
         }
         stage('run') {
-            agent {label 'Java'}
-            steps {
-                sh "java HelloWorld"
-            }
+            parallel{
+              stage('hi & hello run')
+                steps {
+                    sh "java HelloWorld"
+                 }
+                steps {
+                    sh "java hi"
+                  }
+               }
         }
-        stage('compile1') {
-            agent {label 'Java1'}
-            steps {
-                 sh "javac hello.java"
-            }
-            
-        }
-        stage('run1') {
-            agent {label 'Java1'}
-            steps {
-                sh "java HelloWorld"
-            }
-        }
+        
     }
 
        
